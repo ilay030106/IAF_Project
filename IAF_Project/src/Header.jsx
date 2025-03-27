@@ -1,12 +1,12 @@
 function Header() {
   return (
     <header>
-      <span>
+      <div className="Header">
         <button id="text">Text</button>
         <button id="Visual">Visual</button>
         <button id="AddNew">+</button>
-      </span>
-      <hr></hr>
+      </div>
+      <hr />
     </header>
   );
 }
