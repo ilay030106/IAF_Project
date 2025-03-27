@@ -28,6 +28,12 @@ button:focus-visible {
   display: inline-block;
 }
 
-.card .dataTitle {
+.card .data-title {
+  font-family: sans-serif, Arial, Helvetica;
+  margin: 50;
+  color: hsl(0, 0%, 20%);
+}
+.card .card-info {
   font-family: sans-serif;
+  color: hsl(0, 0%, 30%);
 }
