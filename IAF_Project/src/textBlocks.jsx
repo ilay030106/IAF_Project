@@ -1,6 +1,6 @@
-function Blocks() {
+function Blocks({ values }) {
   const instruments = [
-    { label: "Altitude", id: "altitude" },
+    { label: "Altitude", id: "Altitude" },
     { label: "HIS", id: "HIS" },
     { label: "ADI", id: "ADI" },
   ];
@@ -13,7 +13,7 @@ function Blocks() {
             {inst.label}
           </h2>
           <h3 id={`${inst.id}_Val`} className="data-info">
-            PlaceHolder
+            {values[inst.id] !== undefined ? values[inst.id] : "N/A"}
           </h3>
         </div>
       ))}
