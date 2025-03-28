@@ -1,25 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-// קומפוננט להצגת דיאלוג להזנת נתוני טיסה
+// Component for showing a dialog to input flight data
 function AddBlockDialog({ onAdd, onCancel }) {
-  // יצירת state נפרד לכל אחד מהשדות
+  // Separate state for each field
   const [altitude, setAltitude] = useState("");
   const [his, setHis] = useState("");
   const [adi, setAdi] = useState("");
 
-  // פונקציית שליחה של הטופס
+  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault(); // ביטול רענון דף ברירת מחדל של הטופס
+    e.preventDefault(); // Prevent default form refresh
 
     const newData = {};
-    // רק אם המשתמש הזין ערך – נכניס אותו לאובייקט
+    // Only include a field if the user entered a value
     if (altitude !== "") newData.Altitude = parseInt(altitude);
     if (his !== "") newData.HIS = parseInt(his);
     if (adi !== "") newData.ADI = parseInt(adi);
 
-    onAdd(newData); // שליחת הנתונים למעלה לקומפוננטת האב
+    onAdd(newData); // Pass data up to parent
 
-    // איפוס השדות אחרי שליחה
+    // Reset fields after submission
     setAltitude("");
     setHis("");
     setAdi("");
@@ -30,7 +30,7 @@ function AddBlockDialog({ onAdd, onCancel }) {
       <div style={dialogStyle}>
         <h3>Add Your Flight Data</h3>
         <form onSubmit={handleSubmit}>
-          {/* שדה להזנת Altitude */}
+          {/* Altitude field */}
           <label htmlFor="altitude">Altitude</label>
           <input
             id="altitude"
@@ -42,7 +42,7 @@ function AddBlockDialog({ onAdd, onCancel }) {
             style={inputStyle}
           />
 
-          {/* שדה להזנת HIS */}
+          {/* HIS field */}
           <label htmlFor="his">HIS</label>
           <input
             id="his"
@@ -54,7 +54,7 @@ function AddBlockDialog({ onAdd, onCancel }) {
             style={inputStyle}
           />
 
-          {/* שדה להזנת ADI */}
+          {/* ADI field */}
           <label htmlFor="adi">ADI</label>
           <input
             id="adi"
@@ -66,7 +66,7 @@ function AddBlockDialog({ onAdd, onCancel }) {
             style={inputStyle}
           />
 
-          {/* כפתורים לשליחה וביטול */}
+          {/* Buttons for submit and cancel */}
           <div style={{ marginTop: "1em" }}>
             <button type="submit">Add</button>
             <button
@@ -83,7 +83,7 @@ function AddBlockDialog({ onAdd, onCancel }) {
   );
 }
 
-// עיצוב שכבת הרקע של הדיאלוג
+// Styling for the dialog overlay and container
 const overlayStyle = {
   position: "fixed",
   top: 0,
@@ -97,7 +97,6 @@ const overlayStyle = {
   zIndex: 1000,
 };
 
-// עיצוב תיבת הדיאלוג עצמה
 const dialogStyle = {
   backgroundColor: "#fff",
   padding: "2em",
@@ -106,7 +105,6 @@ const dialogStyle = {
   textAlign: "center",
 };
 
-// עיצוב של שדות הקלט בטופס
 const inputStyle = {
   width: "100%",
   padding: "0.5em",

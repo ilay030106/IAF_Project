@@ -1,21 +1,23 @@
 import Header from "./header.jsx";
 import Blocks from "./textBlocks.jsx";
-import { useState } from "react";
+import React, { useState } from "react";
 import AddBlockDialog from "./AddBlockDialog";
 
-// קומפוננטת App הראשית שמכילה את כל מבנה האפליקציה
 function App() {
-  // state עבור ערכי האינסטרומנטים
+  // State for instrument values
   const [values, setValues] = useState({
     Altitude: 0,
     HIS: 0,
     ADI: 0,
   });
 
-  // state לקביעת האם להציג את הדיאלוג
+  // State for showing the add new dialog
   const [showDialog, setShowDialog] = useState(false);
 
-  // פונקציה שמעדכנת ערכים בצורה אוטומטית
+  // State for switching between visual and text representation
+  const [isVisual, setIsVisual] = useState(false);
+
+  // Function to update instrument values automatically
   const updateValues = () => {
     setValues((prev) => ({
       ...prev,
@@ -25,31 +27,31 @@ function App() {
     }));
   };
 
-  // פונקציה שמקבלת ערכים חדשים מהדיאלוג ומעדכנת את ה-state
+  // Function to handle new values from the dialog
   const handleAddNew = (newData) => {
     setValues((prev) => ({
       ...prev,
       ...newData,
     }));
-    setShowDialog(false); // סגירת הדיאלוג לאחר ההוספה
+    setShowDialog(false);
   };
 
   return (
-    <>
-      {/* קומפוננטת Header עם פעולות של עדכון והוספה */}
-      <Header onUpdate={updateValues} onAddNew={() => setShowDialog(true)} />
-
-      {/* הצגת הכרטיסים עם הערכים הנוכחיים */}
-      <Blocks values={values} />
-
-      {/* הצגת דיאלוג ההוספה אם נדרש */}
+    <div>
+      <Header
+        onUpdate={updateValues}
+        onAddNew={() => setShowDialog(true)}
+        onSetVisual={() => setIsVisual(true)}
+        onSetText={() => setIsVisual(false)}
+      />
+      <Blocks values={values} isVisual={isVisual} />
       {showDialog && (
         <AddBlockDialog
           onAdd={handleAddNew}
           onCancel={() => setShowDialog(false)}
         />
       )}
-    </>
+    </div>
   );
 }
 

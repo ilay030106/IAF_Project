@@ -1,19 +1,12 @@
-function Header({ onUpdate, onAddNew }) {
+import React from "react";
+
+function Header({ onUpdate, onAddNew, onSetText, onSetVisual }) {
   return (
     <header>
       <div className="Header">
-        {/* כפתור מצב טקסט (כרגע ללא פעולה) */}
-        <button id="text">Text</button>
-
-        {/* כפתור מצב תצוגה ויזואלית (כרגע ללא פעולה) */}
-        <button id="Visual">Visual</button>
-
-        {/* כפתור לפתיחת דיאלוג הוספת ערכים */}
-        <button id="AddNew" onClick={onAddNew}>
-          +
-        </button>
-
-        {/* כפתור לעדכון הערכים באופן אוטומטי */}
+        <button onClick={onSetText}>Text</button>
+        <button onClick={onSetVisual}>Visual</button>
+        <button onClick={onAddNew}>+</button>
         <button onClick={onUpdate}>Update Values</button>
       </div>
       <hr />
