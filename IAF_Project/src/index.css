@@ -16,6 +16,7 @@ button {
   padding: 0.8em 1.8em; /* slightly bigger */
   font-size: 1.1em; /* slightly bigger */
   font-weight: 600;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
   background-color: #4a90e2;
   color: white;
   cursor: pointer;
