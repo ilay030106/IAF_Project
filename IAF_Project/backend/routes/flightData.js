@@ -14,7 +14,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// project extended
 router.get("/", async (req, res) => {
   try {
     const recent = await FlightData.findOne().sort({ createdAt: -1 });

@@ -8,7 +8,7 @@ function AddBlockDialog({ onAdd, onCancel }) {
   const [adi, setAdi] = useState("");
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form refresh
 
     const newData = {};
@@ -16,6 +16,15 @@ function AddBlockDialog({ onAdd, onCancel }) {
     if (altitude !== "") newData.Altitude = parseInt(altitude);
     if (his !== "") newData.HIS = parseInt(his);
     if (adi !== "") newData.ADI = parseInt(adi);
+    try {
+      const res = await fetch("http://localhost:5000/api/flight", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ altitude, his, adi }),
+      });
+    } catch (err) {
+      alert("Failed to send data");
+    }
 
     onAdd(newData); // Pass data up to parent
 
