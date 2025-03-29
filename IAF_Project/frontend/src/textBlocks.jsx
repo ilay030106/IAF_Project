@@ -1,7 +1,7 @@
 import React from "react";
 import VisualBlocks from "./VisualBlocks";
 
-export function Blocks({ values, isVisual }) {
+function Blocks({ values, isVisual }) {
   if (isVisual) {
     // Use the separated visual component when in visual mode
     return <VisualBlocks values={values} />;
@@ -29,3 +29,5 @@ export function Blocks({ values, isVisual }) {
     </div>
   );
 }
+
+export default Blocks;
